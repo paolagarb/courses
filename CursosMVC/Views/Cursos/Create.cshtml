@@ -1,21 +1,17 @@
 ﻿@model CursosMVC.Models.Curso
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Curso";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>Curso</h4>
-<hr />
-<div class="row">
+<div class="row mt-3">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+                <input type="file" name="foto" />
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -38,29 +34,19 @@
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="Dados" class="control-label"></label>
-                <input asp-for="Dados" class="form-control" />
-                <span asp-validation-for="Dados" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentType" class="control-label"></label>
-                <input asp-for="ContentType" class="form-control" />
-                <span asp-validation-for="ContentType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Link" class="control-label"></label>
                 <input asp-for="Link" class="form-control" />
                 <span asp-validation-for="Link" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

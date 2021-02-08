@@ -1,7 +1,11 @@
 ﻿using CursosMVC.Data;
+using CursosMVC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CursosMVC.Controllers
@@ -16,7 +20,7 @@ namespace CursosMVC.Controllers
         }
 
         // GET: CursosController
-        public async Task<ActionResult> IndexAsync()
+        public async Task<ActionResult> Index()
         {
             var cursos = _context.Cursos;
 
@@ -38,11 +42,26 @@ namespace CursosMVC.Controllers
         // POST: CursosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create([Bind("Id, Nome, Plataforma, TemCertificado, CertificadoGratuito, Link")] Curso curso, IList<IFormFile> foto)
         {
             try
             {
-                return RedirectToAction(nameof(IndexAsync));
+                if (ModelState.IsValid)
+                {
+                    IFormFile imagem = foto.FirstOrDefault();
+                    if (imagem != null)
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        imagem.OpenReadStream().CopyTo(ms);
+                        curso.Dados = ms.ToArray();
+                        curso.ContentType = imagem.ContentType;
+                    }
+
+                    _context.Add(curso);
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -63,7 +82,7 @@ namespace CursosMVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -84,7 +103,7 @@ namespace CursosMVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
