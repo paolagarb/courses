@@ -163,7 +163,7 @@ body {
 
 .novo-curso {
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     font-size: 140%;
     width: 25vh;
     background-color: black;
