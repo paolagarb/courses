@@ -1,15 +1,74 @@
 ﻿@model IEnumerable<CursosMVC.Models.Curso>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cursos";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Adicionar curso</a>
 </p>
-<table class="table">
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-sm-6 mt-5">
+                <div class="d-flex flex-row">
+                    <div class="div-foto">
+                        @if (item.Dados != null)
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <img src="/Cursos/CarregarFoto/@item.Id" class="foto selecionar-curso" alt="Imagem do curso" />
+                            </a>
+                        }
+                        else
+                        { <a asp-action="Details" asp-route-id="@item.Id">
+                                <img src="~/image/sem-foto.jpg" class="foto selecionar-curso" alt="Sem foto" />
+                            </a>
+                        }
+                    </div>
+                    <div class="d-flex flex-column justify-content-between">
+                        <div class="d-flex flex-row">
+                            <div class="plataforma">
+                                @item.Plataforma
+                            </div>
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn edit">
+                                    <img src="~/image/editar.png" alt="Editar" width="15" />
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="text-center title">@item.Nome</h5>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn-detalhes">
+                                Detalhes
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">
+                                <img src="~/image/lixeira.png" alt="Lixeira" width="20" class="lixeira" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="div-novo-curso">
+    <a asp-action="Create" class="novo-cuso">Novo Curso</a>
+</div>
+
+
+
+
+
+
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -74,4 +133,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

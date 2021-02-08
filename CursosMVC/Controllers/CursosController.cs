@@ -110,5 +110,25 @@ namespace CursosMVC.Controllers
                 return View();
             }
         }
+
+        public FileStreamResult CarregarFoto(int id)
+        {
+            var dados = (from c in _context.Cursos
+                             where c.Id == id
+                             select c.Dados).FirstOrDefault();
+
+            var contentType = (from c in _context.Cursos
+                                   where c.Id == id
+                                   select c.ContentType).FirstOrDefault();
+            if (dados != null)
+            {
+                MemoryStream ms = new MemoryStream(dados);
+                return new FileStreamResult(ms, contentType);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

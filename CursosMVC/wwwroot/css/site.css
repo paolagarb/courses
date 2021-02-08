@@ -29,11 +29,6 @@ a {
 html {
   font-size: 14px;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -68,4 +63,112 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+
+@media (min-width: 768px) {
+
+    html {
+        font-size: 16px;
+    }
+
+    .foto {
+        height: 220px;
+        width: auto;
+        margin-right: 15px;
+    }
+  
+    .div-foto {
+        min-width: 220px;
+        max-width: 220px;
+    }
+    
+    .title {
+        margin-top: -60px;
+    }
+
+    .novo-curso {
+        height: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .foto {
+        height: auto;
+        width: 20vh;
+        margin-right: 15px;
+    }
+
+    .div-foto {
+        min-width: 25vh;
+        max-width: 25vh;
+    }
+ 
+    .title {
+        margin-top: -10px;
+    }
+
+    .div-novo-curso {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .novo-curso {
+        height: 25px;
+    }
+}
+
+.selecionar-curso{
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+
+}
+
+    .selecionar-curso:hover, .btn-detalhes:hover, .novo-curso:hover {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.03);
+        text-decoration: none;
+        color: white;
+    }
+
+.selecionar-curso:hover {
+    color: black;
+}
+
+.btn-detalhes {
+    background-color: black;
+    color: white;
+    width: 130px;
+    border-radius: 60px 15px 15px 15px;
+    text-align: center;
+}
+
+.edit {
+    margin-top: -10px;
+}
+
+.plataforma, .title {
+    max-width: 160px;
+}
+
+.lixeira {
+    margin-top: -5px;
+    margin-left: 5px;
+}
+
+.novo-curso {
+    position: fixed;
+    bottom: 0;
+    font-size: 140%;
+    width: 25vh;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    border-radius: 40px 40px 0 0;
+    text-align: center;
 }
