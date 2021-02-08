@@ -4,7 +4,7 @@
     ViewData["Title"] = "Cursos";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center m-3">@ViewData["Title"]</h1>
 
 
 
@@ -17,12 +17,13 @@
                     <div class="div-foto">
                         @if (item.Dados != null)
                         {
-                            <a asp-action="Details" asp-route-id="@item.Id">
+                            <a href="@item.Link" target="_blank">
                                 <img src="/Cursos/CarregarFoto/@item.Id" class="foto selecionar-curso" alt="Imagem do curso" />
                             </a>
                         }
                         else
-                        { <a asp-action="Details" asp-route-id="@item.Id">
+                        { 
+                            <a href="@item.Link" target="_blank">
                                 <img src="~/image/sem-foto.jpg" class="foto selecionar-curso" alt="Sem foto" />
                             </a>
                         }
@@ -33,8 +34,8 @@
                                 @item.Plataforma
                             </div>
                             <div>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn edit">
-                                    <img src="~/image/editar.png" alt="Editar" width="15" />
+                                <a href="@item.Link" target="_blank">
+                                    <p class="btn-acesso">Acessar</p>
                                 </a>
                             </div>
                         </div>
@@ -42,12 +43,25 @@
                             <h5 class="text-center title">@item.Nome</h5>
                         </div>
                         <div class="d-flex flex-row">
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn-detalhes">
-                                Detalhes
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@item.Id">
-                                <img src="~/image/lixeira.png" alt="Lixeira" width="20" class="lixeira" />
-                            </a>
+                            @if (item.TemCertificado == true)
+                            {
+                                @if (item.CertificadoGratuito == true)
+                                {
+                                    <p class="btn-detalhes btn-certificado">Certificado gratuito</p>      
+                                }
+                                else
+                                {
+                                    <p class="btn-detalhes btn-certificado">
+                                        Certificado pago
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="btn-detalhes btn-sem-certificado">
+                                    Sem certificado
+                                </p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -55,79 +69,7 @@
         }
     </div>
 </div>
-<div class="div-novo-curso text-center">
+@*<div class="div-novo-curso text-center">
     <a asp-action="Create" class="novo-curso">Novo Curso</a>
-</div>
+</div>*@
 
-
-
-
-
-
-
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plataforma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TemCertificado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CertificadoGratuito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dados)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContentType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Link)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plataforma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TemCertificado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CertificadoGratuito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@

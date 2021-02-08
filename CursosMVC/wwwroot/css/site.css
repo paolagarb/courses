@@ -129,7 +129,7 @@ body {
 
 }
 
-    .selecionar-curso:hover, .btn-detalhes:hover, .novo-curso:hover {
+    .selecionar-curso:hover, .novo-curso:hover, .btn-acesso:hover {
         -webkit-transform: scale(1.05);
         transform: scale(1.03);
         text-decoration: none;
@@ -141,11 +141,27 @@ body {
 }
 
 .btn-detalhes {
-    background-color: black;
     color: white;
     width: 130px;
-    border-radius: 60px 15px 15px 15px;
+    border-radius: 5px;
     text-align: center;
+}
+
+.btn-certificado {
+    background-color: darkgreen;
+}
+
+.btn-sem-certificado {
+    background-color: red;
+}
+
+.btn-acesso {
+    color: white;
+    width: 70px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: black;
+    margin-left: 15px;
 }
 
 .edit {
