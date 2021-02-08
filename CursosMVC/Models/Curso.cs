@@ -9,6 +9,7 @@
         public bool CertificadoGratuito { get; set; }
         public byte[] Dados { get; set; }
         public string ContentType { get; set; }
+        public string Link { get; set; }
         public Curso()
         {
 
