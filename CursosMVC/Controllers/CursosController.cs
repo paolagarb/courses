@@ -3,6 +3,7 @@ using CursosMVC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +21,17 @@ namespace CursosMVC.Controllers
         }
 
         // GET: CursosController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string search)
         {
-            var cursos = _context.Cursos;
+            var cursos = await _context.Cursos.ToListAsync();
 
-            return View(await cursos.ToListAsync());
+            if (!String.IsNullOrEmpty(search))
+            {
+                cursos = await _context.Cursos.Where(c => 
+                    c.Nome.Contains(search) || c.Plataforma.Contains(search)).ToListAsync();
+            }
+
+            return View(cursos);
         }
 
         // GET: CursosController/Details/5

@@ -194,3 +194,15 @@ body {
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
+
+.div-filtro input {
+    height: 30px;
+}
+
+
+#filtrar {
+    padding-left: 5px;
+    margin: 0 10px;
+    width: 70%;
+}

@@ -6,8 +6,13 @@
 
 <h1 class="text-center m-3">@ViewData["Title"]</h1>
 
-
-
+<form asp-action="Index" method="get">
+    <div class="row div-filtro">
+        <p>Filtrar: </p>
+        <input type="text" id="filtrar" name="search" />
+        <input type="submit" value="Filtrar" class="btn btn-dark" />
+    </div>
+</form>
 <div class="container">
     <div class="row">
         @foreach (var item in Model)
