@@ -87,6 +87,8 @@ body {
     
     .title {
         margin-top: -60px;
+        font-weight: 400;
+        font-size: 130%;
     }
 
     .novo-curso {
@@ -168,7 +170,7 @@ body {
     margin-top: -10px;
 }
 
-.plataforma, .title {
+#plataforma, .title {
     max-width: 160px;
 }
 
